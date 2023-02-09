@@ -1,5 +1,7 @@
 #!/usr/bin/env nextflow
 
+nextflow.enable.dsl=2
+
 fastq_files = Channel.fromPath(params.in, type: 'file')
 
 process sortbyname {
