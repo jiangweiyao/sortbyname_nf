@@ -6,8 +6,8 @@ fastq_files = Channel.fromPath(params.in, type: 'file')
 
 process sortbyname {
     //errorStrategy 'ignore'
-    cpus 8
-    memory '64 GB'
+    cpus 16
+    memory '120 GB'
     publishDir params.out, overwrite: true
 
     input:
@@ -16,8 +16,8 @@ process sortbyname {
     output:
     path "Paired_${fastq}"
     """
-    sortbyname.sh in=${fastq} out=Paired_${fastq.baseName} -Xmx62g
-    bgzip -@ 8 Paired_${fastq.baseName}
+    sortbyname.sh in=${fastq} out=Paired_${fastq.baseName} -Xmx120g
+    bgzip -@ 16 Paired_${fastq.baseName}
     """
 }
 
